@@ -1,4 +1,0 @@
-redo 11 part 2 in go
-redo 15 (had to base it off someone else)
-verify 16
-understand wtf was day 17 part 2
