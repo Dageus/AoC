@@ -1,0 +1,43 @@
+package utils
+
+import (
+	"errors"
+	"fmt"
+	"os"
+	"path/filepath"
+	"runtime"
+	"strings"
+)
+
+const url = "https://adventofcode.com/"
+
+// Input returns the input filename based on the calling file's name.
+// e.g., if called from "day01_test.go", it looks for "inputs/day01.input"
+// or it downloads the file
+func Input() string {
+	_, filename, _, ok := runtime.Caller(1)
+	if !ok {
+		panic("Could not recover caller information")
+	}
+
+	base := filepath.Base(filename)
+
+	name := strings.TrimSuffix(base, ".go")
+	name = strings.TrimSuffix(name, "_test")
+
+	dir := filepath.Dir(filename)
+	dir = filepath.Dir(dir)
+
+	inputPath := filepath.Join(dir, "inputs", name+".input")
+
+	if _, err := os.Stat(inputPath); os.IsNotExist(err) {
+		fmt.Println("Test input doesn't exist, downloading from ")
+		if b, err := DownloadInput(); err == nil {
+			if err := os.WriteFile(filename, b, 0644); err != nil {
+				panic(err)
+			}
+			return inputPath
+		}
+	}
+	return inputPath
+}
