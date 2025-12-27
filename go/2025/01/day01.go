@@ -101,8 +101,3 @@ func partTwo(filename string) int {
 	}
 	return zeros
 }
-
-func main() {
-	res2 := partTwo("input")
-	print(res2)
-}

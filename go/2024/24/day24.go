@@ -153,13 +153,13 @@ func getOutput() int {
 	return int(decimal)
 }
 
-func partOne(filename string) {
+func partOne(filename string) int {
 	getInput(filename)
 	simulate()
-	fmt.Println("Output (Decimal):", getOutput())
+	return getOutput()
 }
 
-func partTwo(filename string) {
+func partTwo(filename string) int {
 	getInput(filename)
 
 	var edges []string
@@ -199,9 +199,4 @@ func partTwo(filename string) {
 
 	// Solution was inspired by r/adventofcode
 	// Visualize solution in https://mermaid.live/edit
-}
-
-func main() {
-	partOne("input")
-	partTwo("input")
 }

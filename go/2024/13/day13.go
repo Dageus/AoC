@@ -115,7 +115,7 @@ func getOptimalResult(clawMachine ClawMachine) *Prize {
 	return &Prize{X: A, Y: B}
 }
 
-func partOne(filename string) {
+func partOne(filename string) int {
 	getInput(filename)
 	for _, clawMachine := range clawMachines {
 		if result := getOptimalResult(clawMachine); result != nil {
@@ -123,9 +123,5 @@ func partOne(filename string) {
 			bGoal += result.Y
 		}
 	}
-	fmt.Println(aGoal*A_TOKENS + bGoal*B_TOKENS)
-}
-
-func main() {
-	partOne("input")
+	return aGoal*A_TOKENS + bGoal*B_TOKENS
 }

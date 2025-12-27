@@ -138,7 +138,7 @@ func calculateSafetyFactor() int {
 	return quadrant_1 * quadrant_2 * quadrant_3 * quadrant_4
 }
 
-func partOne(filename string) {
+func partOne(filename string) int {
 	getInput(filename)
 	for range TIME {
 		print(".")
@@ -148,7 +148,7 @@ func partOne(filename string) {
 	for _, robot := range robots {
 		fmt.Println(robot)
 	}
-	fmt.Println(calculateSafetyFactor())
+	return calculateSafetyFactor()
 }
 
 func simulateAndTrackStates() {
@@ -226,13 +226,13 @@ func generateGrid(positions []Coordinate) [][]rune {
 	return grid
 }
 
-func writeFilteredStatesToFiles() {
+func writeFilteredStatesToFiles() int {
 	// Ensure the output directory exists
 	outputDir := "filtered_output"
 	err := os.MkdirAll(outputDir, os.ModePerm)
 	if err != nil {
 		fmt.Printf("Failed to create output directory: %v\n", err)
-		return
+		return -1
 	}
 
 	// Iterate through states and check for horizontal streaks
@@ -268,7 +268,7 @@ func writeFilteredStatesToFiles() {
 		}
 	}
 
-	fmt.Printf("%d states with more than 10 consecutive robots horizontally have been written to the 'filtered_output' directory.\n", fileCount)
+	return fileCount
 }
 
 // Checks if any row in the grid contains a streak of at least `streakLength` consecutive robots
@@ -289,14 +289,8 @@ func hasHorizontalStreak(grid [][]rune, streakLength int) bool {
 	return false
 }
 
-func partTwo(filename string) {
+func partTwo(filename string) int {
 	getInput(filename)
 	simulateAndTrackStates()
-	writeFilteredStatesToFiles()
-	// writeTopStatesToFiles()
-}
-
-func main() {
-	// partOne("input")
-	partTwo("input")
+	return writeFilteredStatesToFiles()
 }

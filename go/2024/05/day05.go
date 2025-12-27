@@ -163,29 +163,24 @@ func verifyIncorrectUpdates() {
 	updates = invalidUpdates
 }
 
-func sumMiddleNumber() {
+func sumMiddleNumber() int {
 	sum := 0
 
 	for _, update := range updates {
 		sum += update[len(update)/2]
 	}
-
-	fmt.Println(sum)
+	return sum
 }
 
-func partOne(fileName string) {
-	getInput(fileName)
+func partOne(filename string) int {
+	getInput(filename)
 	verifyUpdates()
-	sumMiddleNumber()
+	return sumMiddleNumber()
 }
 
-func partTwo(fileName string) {
+func partTwo(fileName string) int {
 	getInput(fileName)
 	verifyIncorrectUpdates()
-	sumMiddleNumber()
-}
+	return sumMiddleNumber()
 
-func main() {
-	// partOne("input")
-	partTwo("input")
 }

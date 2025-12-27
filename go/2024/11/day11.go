@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"os"
 	"strconv"
 	"strings"
@@ -78,29 +77,24 @@ func processStone(num int, blinks int) []int {
 	return result
 }
 
-func partOne(filename string) {
+func partOne(filename string) int {
 	getInput(filename)
 	result := []int{}
 	for _, stone := range stones {
 		result = append(result, processStone(stone, BLINKS)...)
 	}
-	fmt.Println("length:", len(result))
+	return len(result)
 }
 
-func processLine() {
+func processLine() int {
 	result := []int{}
 	for _, stone := range stones {
 		result = append(result, processStone(stone, BIG_BLINKS)...)
 	}
-	fmt.Println("length:", len(result))
+	return len(result)
 }
 
-func partTwo(filename string) {
+func partTwo(filename string) int {
 	getInput(filename)
-	processLine()
-}
-
-func main() {
-	// partOne("input2")
-	partTwo("input")
+	return processLine()
 }

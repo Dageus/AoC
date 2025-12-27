@@ -13,10 +13,12 @@ func getInput(filename string) {
 	scanner := bufio.NewScanner(file)
 }
 
-func partOne(filename string) {
+func partOne(filename string) int {
 	getInput(filename)
+	return
 }
 
-func main() {
-	partOne("input")
+func partTwo(filename string) int {
+	getInput(filename)
+	return
 }

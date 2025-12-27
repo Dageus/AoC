@@ -171,13 +171,14 @@ func displayMaze(x, y int) {
 	}
 }
 
-func partOne(filename string) {
+func partOne(filename string) int {
 	getInput(filename)
-	score, bestTile := BFS(Position{x: startX, y: startY}, Position{x: endX, y: endY})
-	fmt.Println("shortest path points:", score)
-	fmt.Println("best tiles length", bestTile)
+	score, _ := BFS(Position{x: startX, y: startY}, Position{x: endX, y: endY})
+	return score
 }
 
-func main() {
-	partOne("input")
+func partTwo(filename string) int {
+	getInput(filename)
+	_, bestTile := BFS(Position{x: startX, y: startY}, Position{x: endX, y: endY})
+	return bestTile
 }

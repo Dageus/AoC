@@ -3,6 +3,9 @@ package main
 import (
 	_ "embed"
 	"testing"
+
+	"github.com/Dageus/advent-of-code/go/utils"
+	"github.com/stretchr/testify/assert"
 )
 
 const test = `029A

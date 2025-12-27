@@ -84,9 +84,9 @@ func tolerableReport(report []int) bool {
 	return false
 }
 
-func partOne() {
+func partOne(filename string) int {
 	sum := 0
-	reports := getInput("input")
+	reports := getInput(filename)
 	fmt.Println(len(reports))
 	for _, report := range reports {
 		if safeReport(report) {
@@ -94,12 +94,12 @@ func partOne() {
 		}
 	}
 
-	fmt.Println(sum)
+	return sum
 }
 
-func partTwo() {
+func partTwo(filename string) int {
 	sum := 0
-	reports := getInput("input")
+	reports := getInput(filename)
 	fmt.Println(len(reports))
 	for _, report := range reports {
 		if tolerableReport(report) {
@@ -107,9 +107,5 @@ func partTwo() {
 		}
 	}
 
-	fmt.Println(sum)
-}
-
-func main() {
-	partTwo()
+	return sum
 }

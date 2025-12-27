@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"log"
 	"os"
 )
@@ -50,21 +49,20 @@ func getInput(filename string) {
 	dimensions = Coordinate{R: r, C: c}
 }
 
-func calculateAntiNodes() {
+func calculateAntiNodes(calculateOutside bool) {
 	for _, coordinates := range antenas {
 
 		start_idx := 0
 		for start_idx != len(coordinates)-1 {
-			// NOTE: god save me from 3 nested for's T_T
 			for idx := start_idx + 1; idx < len(coordinates); idx++ {
-				computeAntiNodes(coordinates[start_idx], coordinates[idx])
+				computeAntiNodes(coordinates[start_idx], coordinates[idx], calculateOutside)
 			}
 			start_idx++
 		}
 	}
 }
 
-func computeAntiNodes(point1 Coordinate, point2 Coordinate) {
+func computeAntiNodes(point1 Coordinate, point2 Coordinate, calculateOutside bool) {
 	// NOTE: int conversions go brrrr
 	vector := Coordinate{
 		R: point2.R - point1.R,
@@ -80,32 +78,33 @@ func computeAntiNodes(point1 Coordinate, point2 Coordinate) {
 		C: point2.C + vector.C,
 	}
 
-	// NOTE: remove this for partOne
-	for !outsideMap(antinode1) {
-		antinodes[antinode1] = true
-		antinode1 = Coordinate{
-			R: antinode1.R - vector.R,
-			C: antinode1.C - vector.C,
+	if calculateOutside {
+		for !outsideMap(antinode1) {
+			antinodes[antinode1] = true
+			antinode1 = Coordinate{
+				R: antinode1.R - vector.R,
+				C: antinode1.C - vector.C,
+			}
 		}
-	}
 
-	for !outsideMap(antinode2) {
-		antinodes[antinode2] = true
-		antinode2 = Coordinate{
-			R: antinode2.R + vector.R,
-			C: antinode2.C + vector.C,
+		for !outsideMap(antinode2) {
+			antinodes[antinode2] = true
+			antinode2 = Coordinate{
+				R: antinode2.R + vector.R,
+				C: antinode2.C + vector.C,
+			}
 		}
 	}
 }
 
-func partOne(filename string) {
+func partOne(filename string) int {
 	getInput(filename)
-	fmt.Println(antenas)
-	fmt.Println(dimensions)
-	calculateAntiNodes()
-	fmt.Println(len(antinodes))
+	calculateAntiNodes(false)
+	return len(antinodes)
 }
 
-func main() {
-	partOne("input")
+func partTwo(filename string) int {
+	getInput(filename)
+	calculateAntiNodes(true)
+	return len(antinodes)
 }

@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"math"
 	"os"
 	"strconv"
@@ -46,7 +45,7 @@ func nextRandomNumber(n int) int {
 	return n
 }
 
-func partOne(filename string) {
+func partOne(filename string) int {
 	getInput(filename)
 	sum := 0
 	for _, buyer := range buyers {
@@ -56,14 +55,14 @@ func partOne(filename string) {
 		}
 		sum += secret
 	}
-	fmt.Println("sum:", sum)
+	return sum
 }
 
 func getPrice(secret int) int {
 	return secret % 10
 }
 
-func partTwo(filename string) {
+func partTwo(filename string) int {
 	getInput(filename)
 
 	seen := make(map[[4]int]bool)
@@ -96,10 +95,5 @@ func partTwo(filename string) {
 			p2 = v
 		}
 	}
-	fmt.Println("max bananas:", p2)
-}
-
-func main() {
-	// partOne("input")
-	partTwo("input")
+	return p2
 }

@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"log"
 	"os"
 	"strconv"
@@ -11,8 +10,8 @@ import (
 
 var result int
 
-func getInput(fileName string, f func(string)) {
-	file, err := os.Open(fileName)
+func getInput(filename string, f func(string)) {
+	file, err := os.Open(filename)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -86,11 +85,7 @@ func canAchieveTarget(nums []string, target int, current string, index int) bool
 	return false
 }
 
-func partTwo(fileName string) int {
-	getInput(fileName, testLine)
+func partTwo(filename string) int {
+	getInput(filename, testLine)
 	return 0
-}
-
-func main() {
-	fmt.Println("Result: ", partOne("input"))
 }

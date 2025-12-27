@@ -40,7 +40,7 @@ func findShortestPath(code string) int {
 
 }
 
-func partOne(filename string) {
+func partOne(filename string) int {
 	codes := getInput(filename)
 
 	complexity := 0
@@ -49,9 +49,5 @@ func partOne(filename string) {
 		len := findShortestPath(code)
 		complexity += len * ?
 	}
-	fmt.Println("complexity:", complexity)
-}
-
-func main() {
-	partOne("input")
+	return complexity
 }

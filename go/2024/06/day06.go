@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"log"
 	"os"
 )
@@ -76,10 +75,10 @@ func getInput(fileName string) {
 	guardTrajectory = append(guardTrajectory, Trajectory{Position: guardPosition, Direction: GUARD})
 }
 
-func partOne(fileName string) {
-	getInput(fileName)
+func partOne(filename string) int {
+	getInput(filename)
 	mapTrajectory()
-	countDistinctPositions()
+	return countDistinctPositions()
 }
 
 func mapTrajectory() {
@@ -124,17 +123,17 @@ func outsideMap(position Coordinates) bool {
 	return (position.C < 0 || position.R < 0) || (position.C >= mapDimensions.C || position.R >= mapDimensions.R)
 }
 
-func countDistinctPositions() {
-	fmt.Println(len(distinctPositions) - 1)
+func countDistinctPositions() int {
+	return len(distinctPositions) - 1
 }
 
-func partTwo(fileName string) {
+func partTwo(fileName string) int {
 	getInput(fileName)
 	mapTrajectory()
-	findObstaclePositions()
+	return findObstaclePositions()
 }
 
-func findObstaclePositions() {
+func findObstaclePositions() int {
 	n_obstacles := make(map[Coordinates]bool)
 	for _, obstacle := range guardTrajectory {
 		newObstacle := calculateObstaclePosition(obstacle)
@@ -144,7 +143,7 @@ func findObstaclePositions() {
 		}
 	}
 
-	fmt.Println(len(n_obstacles))
+	return len(n_obstacles)
 }
 
 func calculateObstaclePosition(obstacle Trajectory) Coordinates {
@@ -219,9 +218,4 @@ func createsLoop(obstacle Coordinates) bool {
 		}
 	}
 	return false
-}
-
-func main() {
-	// partOne("input")
-	partTwo("input")
 }

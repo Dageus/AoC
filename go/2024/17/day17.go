@@ -97,7 +97,7 @@ func execProgram(program *Program, instructions []int) []int {
 	return output
 }
 
-func partOne(filename string) {
+func partOne(filename string) string {
 	program, instructions := getInput(filename)
 	fmt.Println(program.A)
 	fmt.Println(program.B)
@@ -114,7 +114,7 @@ func partOne(filename string) {
 			s += fmt.Sprintf("%d", v)
 		}
 	}
-	fmt.Printf("%s\n", s)
+	return s
 }
 
 func calc(program *Program, p []int, n []int, testA uint64, l int) uint64 {
@@ -139,7 +139,7 @@ func calc(program *Program, p []int, n []int, testA uint64, l int) uint64 {
 	return 0
 }
 
-func partTwo(filename string) {
+func partTwo(filename string) int {
 	program, instructions := getInput(filename)
 	testA := uint64(0)
 	for k := uint64(0); k < 128; k++ {
@@ -151,10 +151,5 @@ func partTwo(filename string) {
 		}
 
 	}
-	fmt.Printf("%d\n", testA)
-}
-
-func main() {
-	partOne("input")
-	partTwo("input")
+	return int(testA)
 }

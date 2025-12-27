@@ -102,7 +102,7 @@ func canRemoveWall(r, c int) bool {
 			(racetrack[r][c-1] == TRACK && racetrack[r][c+1] == TRACK))
 }
 
-func partOne(filename string) {
+func partOne(filename string) int {
 	getInput(filename)
 	default_time := findPath()
 	fmt.Println(default_time)
@@ -118,14 +118,14 @@ func partOne(filename string) {
 			}
 		}
 	}
-	fmt.Println("possible paths:", optimal_paths)
+	return optimal_paths
 }
 
 func manhattanDistance(point1, point2 Vertex) int {
 	return int(math.Abs(float64(point1.x)-float64(point2.x))) + int(math.Abs(float64(point1.y)-float64(point2.y)))
 }
 
-func partTwo(filename string) {
+func partTwo(filename string) int {
 	getInput(filename)
 	default_time := findPath()
 	fmt.Println(default_time)
@@ -141,10 +141,5 @@ func partTwo(filename string) {
 			}
 		}
 	}
-	fmt.Println("possible paths:", optimal_paths)
+	return optimal_paths
 }
-
-// func main() {
-// 	partOne("input")
-// 	partTwo("input")
-// }

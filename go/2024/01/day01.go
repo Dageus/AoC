@@ -11,8 +11,8 @@ import (
 	"strings"
 )
 
-func getInputPartOne(fileName string) ([]int, []int) {
-	file, err := os.Open(fileName)
+func getInputPartOne(filename string) ([]int, []int) {
+	file, err := os.Open(filename)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -40,8 +40,8 @@ func getInputPartOne(fileName string) ([]int, []int) {
 	return list1, list2
 }
 
-func getInputPartTwo(fileName string) ([]int, map[int]int) {
-	file, err := os.Open(fileName)
+func getInputPartTwo(filename string) ([]int, map[int]int) {
+	file, err := os.Open(filename)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -73,19 +73,19 @@ func getInputPartTwo(fileName string) ([]int, map[int]int) {
 	return list, table
 }
 
-func partOne() {
-	list1, list2 := getInputPartOne("input")
+func partOne(filename string) int {
+	list1, list2 := getInputPartOne(filename)
 	sort.Ints(list1)
 	sort.Ints(list2)
 	sum := 0
 	for i := range list1 {
 		sum += int(math.Abs(float64(list1[i]) - float64(list2[i])))
 	}
-	fmt.Println(sum)
+	return sum
 }
 
-func partTwo() {
-	list, table := getInputPartTwo("input")
+func partTwo(filename string) int {
+	list, table := getInputPartTwo(filename)
 	fmt.Println(table)
 	sum := 0
 	for _, val := range list {
@@ -93,9 +93,5 @@ func partTwo() {
 			sum += val * mul
 		}
 	}
-	fmt.Println(sum)
-}
-
-func main() {
-	partTwo()
+	return sum
 }

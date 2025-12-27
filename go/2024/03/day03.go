@@ -18,21 +18,21 @@ type Instruction struct {
 	Num2  int
 }
 
-func getInputPartOne(fileName string) {
-	file, err := os.Open(fileName)
+func getInputPartOne(filename string) int {
+	file, err := os.Open(filename)
 	if err != nil {
 		log.Fatal(err)
 	}
 	scanner := bufio.NewScanner(file)
-	sanitizeInput(scanner)
+	return sanitizeInput(scanner)
 }
 
-func sanitizeInput(scanner *bufio.Scanner) {
+func sanitizeInput(scanner *bufio.Scanner) int {
 	pattern := `mul\(\d{1,3},\d{1,3}\)`
 	re, err := regexp.Compile(pattern)
 	if err != nil {
 		log.Fatal("Error compiling regex:", err)
-		return
+		return -1
 	}
 
 	validMuls := []string{}
@@ -42,10 +42,10 @@ func sanitizeInput(scanner *bufio.Scanner) {
 		validMuls = append(validMuls, re.FindAllString(scanner.Text(), -1)...)
 	}
 	fmt.Println(validMuls)
-	sumMuls(validMuls)
+	return sumMuls(validMuls)
 }
 
-func sumMuls(validMuls []string) {
+func sumMuls(validMuls []string) int {
 	sum := 0
 	pattern := `\d+` // Matches sequences of one or more digits
 
@@ -53,7 +53,7 @@ func sumMuls(validMuls []string) {
 	re, err := regexp.Compile(pattern)
 	if err != nil {
 		fmt.Println("Error compiling regex:", err)
-		return
+		return -1
 	}
 
 	for _, validMul := range validMuls {
@@ -65,22 +65,24 @@ func sumMuls(validMuls []string) {
 		}
 		sum += num1 * num2
 	}
-	fmt.Println(sum)
+	return sum
 }
 
-func partOne(fileName string) {
-	getInputPartOne(fileName)
+func partOne(filename string) int {
+	sum := 0
+	sum += getInputPartOne(filename)
+	return sum
 }
 
-func getInputPartTwo(fileName string) {
-	file, err := os.ReadFile(fileName)
+func getInputPartTwo(filename string) int {
+	file, err := os.ReadFile(filename)
 	if err != nil {
 		log.Fatal(err)
 	}
-	sanitizeInputWithKeywords(file)
+	return sanitizeInputWithKeywords(file)
 }
 
-func sanitizeInputWithKeywords(input []byte) {
+func sanitizeInputWithKeywords(input []byte) int {
 	pattern := `mul\(\d{1,3},\d{1,3}\)`
 	valid := `do\(\)`
 	invalid := `don't\(\)`
@@ -127,10 +129,10 @@ func sanitizeInputWithKeywords(input []byte) {
 
 	sort.Slice(instructions, func(i, j int) bool { return instructions[i].Start < instructions[j].Start })
 
-	sumMulsWithKeywords(instructions)
+	return sumMulsWithKeywords(instructions)
 }
 
-func sumMulsWithKeywords(instructions []Instruction) {
+func sumMulsWithKeywords(instructions []Instruction) int {
 	sum := 0
 	isValid := true
 
@@ -146,13 +148,11 @@ func sumMulsWithKeywords(instructions []Instruction) {
 			isValid = false
 		}
 	}
-	fmt.Println(sum)
+	return sum
 }
 
-func partTwo(fileName string) {
-	getInputPartTwo(fileName)
-}
-
-func main() {
-	partTwo("input")
+func partTwo(filename string) int {
+	sum := 0
+	sum += getInputPartTwo(filename)
+	return sum
 }

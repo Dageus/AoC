@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"bytes"
-	"fmt"
 	"os"
 	"path/filepath"
 )
@@ -375,10 +374,19 @@ func countSumBoxesCoordsX2(s []string) int {
 	return result
 }
 
-func main() {
-	absPathName, _ := filepath.Abs("input")
+func partOne(filename string) int {
+	absPathName, _ := filepath.Abs(filename)
 	output, _ := ReadInput(absPathName)
 
-	fmt.Println(countSumBoxesCoords(output))
-	fmt.Println(countSumBoxesCoordsX2(output))
+	return countSumBoxesCoords(output)
+}
+
+func partTwo(filename string) int {
+	absPathName, _ := filepath.Abs(filename)
+	output, _ := ReadInput(absPathName)
+
+	return countSumBoxesCoordsX2(output)
+}
+
+func main() {
 }

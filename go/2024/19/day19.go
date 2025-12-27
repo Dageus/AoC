@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"os"
 	"strings"
 )
@@ -77,11 +76,7 @@ func countPossiblePatterns(towels, patterns []string) uint64 {
 	return sum
 }
 
-func partOne(filename string) {
+func partOne(filename string) int {
 	towels, patterns := getInput(filename)
-	fmt.Println("number of possible patterns:", countPossiblePatterns(towels, patterns))
-}
-
-func main() {
-	partOne("input")
+	return int(countPossiblePatterns(towels, patterns))
 }

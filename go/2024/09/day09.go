@@ -18,28 +18,6 @@ var id int
 // NOTE: maps size of empty space to start index
 var emptySpace []Space
 
-func getInput(filename string) {
-	file, err := os.Open(filename)
-	if err != nil {
-		panic(err)
-	}
-	scanner := bufio.NewScanner(file)
-	if scanner.Scan() {
-		// NOTE: part one
-		// newDisk := reformatDisk([]rune(scanner.Text()))
-
-		// NOTE: part two
-		newDisk := reformatDiskString([]rune(scanner.Text()))
-		fmt.Println(newDisk)
-
-		// NOTE: part one
-		// reorganizeSpace(newDisk)
-
-		// NOTE: part two
-		reorganizeSpaceFullFiles(newDisk)
-	}
-}
-
 func reformatDiskString(disk []rune) []string {
 	newDisk := []string{}
 	disk_index := 0
@@ -93,7 +71,7 @@ func reformatDisk(disk []rune) []rune {
 	return newDisk
 }
 
-func reorganizeSpace(disk []rune) {
+func reorganizeSpace(disk []rune) int {
 	// NOTE: two pointer?
 	left := 0
 	right := len(disk) - 1
@@ -110,10 +88,10 @@ func reorganizeSpace(disk []rune) {
 		left++
 		right--
 	}
-	fmt.Println(computeChecksum(disk))
+	return computeChecksum(disk)
 }
 
-func reorganizeSpaceFullFiles(disk []string) {
+func reorganizeSpaceFullFiles(disk []string) int {
 
 	fmt.Println("FILES:", stringFileSize)
 	fmt.Println("N_IDS:", id)
@@ -156,8 +134,7 @@ func reorganizeSpaceFullFiles(disk []string) {
 		}
 	}
 
-	fmt.Println(disk)
-	fmt.Println(computeChecksumString(disk))
+	return computeChecksumString(disk)
 }
 
 func findIndexForSize(size int) int {
@@ -222,10 +199,30 @@ func intToRune(val int) rune {
 	return rune('0' + val)
 }
 
-func partOne(filename string) {
-	getInput(filename)
+func partOne(filename string) int {
+	file, err := os.Open(filename)
+	if err != nil {
+		panic(err)
+	}
+	scanner := bufio.NewScanner(file)
+	if scanner.Scan() {
+		newDisk := reformatDisk([]rune(scanner.Text()))
+
+		return reorganizeSpace(newDisk)
+	}
+	return 0
 }
 
-func main() {
-	partOne("input3")
+func partTwo(filename string) int {
+	file, err := os.Open(filename)
+	if err != nil {
+		panic(err)
+	}
+	scanner := bufio.NewScanner(file)
+	if scanner.Scan() {
+		newDisk := reformatDiskString([]rune(scanner.Text()))
+
+		return reorganizeSpaceFullFiles(newDisk)
+	}
+	return 0
 }

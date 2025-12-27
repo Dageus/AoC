@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"math"
 	"os"
 	"strconv"
@@ -108,7 +107,10 @@ func getNeighbours(position Position) (neighbours []Position) {
 	return
 }
 
-func partOne(filename string) {
+func partOne(filename string) int {
+	for range DIMENSION {
+		memory = append(memory, make([]rune, DIMENSION))
+	}
 	getInput(filename)
 
 	for i := range SIMULATION_LIMIT {
@@ -118,10 +120,14 @@ func partOne(filename string) {
 	goal := Position{DIMENSION - 1, DIMENSION - 1}
 	start := Position{0, 0}
 	path := BFS(start, goal)
-	fmt.Println("smallest path:", path)
+	return path
 }
 
-func partTwo(filename string) {
+func partTwo(filename string) *Position {
+	for range DIMENSION {
+		memory = append(memory, make([]rune, DIMENSION))
+	}
+
 	getInput(filename)
 	goal := Position{DIMENSION - 1, DIMENSION - 1}
 	start := Position{0, 0}
@@ -129,17 +135,8 @@ func partTwo(filename string) {
 		pos := corrupted[i]
 		memory[pos.y][pos.x] = CORRUPTED
 		if BFS(start, goal) == math.MaxInt {
-			fmt.Println("first position that breaks path:", pos)
-			break
+			return &pos
 		}
 	}
-}
-
-func main() {
-	for range DIMENSION {
-		memory = append(memory, make([]rune, DIMENSION))
-	}
-	partOne("input")
-
-	partTwo("input")
+	return nil
 }

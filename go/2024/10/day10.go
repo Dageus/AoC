@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"os"
 )
 
@@ -51,8 +50,6 @@ func getInput(filename string) {
 		r++
 	}
 	dimension = len(grid)
-	fmt.Println(grid)
-	fmt.Println("Trailheads:", trailheads)
 }
 
 func findPaths(trailhead Point) int {
@@ -101,13 +98,13 @@ func insideGrid(point Point) bool {
 	return false
 }
 
-func partOne(filename string) {
+func partOne(filename string) int {
 	getInput(filename)
 	sum := 0
 	for _, trailhead := range trailheads {
 		sum += findPaths(trailhead)
 	}
-	fmt.Println("Found", sum, "nines")
+	return sum
 }
 
 func findDistinctPaths(point Point, visited map[Point]bool) int {
@@ -132,7 +129,7 @@ func findDistinctPaths(point Point, visited map[Point]bool) int {
 	return paths
 }
 
-func partTwo(filename string) {
+func partTwo(filename string) int {
 	getInput(filename)
 	totalScore := 0
 
@@ -141,10 +138,5 @@ func partTwo(filename string) {
 	for _, trailhead := range trailheads {
 		totalScore += findDistinctPaths(trailhead, visited)
 	}
-	fmt.Println(totalScore, "score")
-}
-
-func main() {
-	// partOne("input2")
-	partTwo("input")
+	return totalScore
 }

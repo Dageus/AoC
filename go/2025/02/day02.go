@@ -102,8 +102,3 @@ func partTwo(filename string) int {
 	}
 	return sum
 }
-
-func main() {
-	res := partTwo("input")
-	println(res)
-}

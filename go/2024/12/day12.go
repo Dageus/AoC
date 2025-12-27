@@ -187,19 +187,14 @@ func newCorner(new_plant Coordinate, polygon []Coordinate) bool {
 	return false
 }
 
-func partOne(filename string) {
+func partOne(filename string) int {
 	getInput(filename)
 	calculateTotalCost()
-	fmt.Println("total_cost:", total_cost)
+	return total_cost
 }
 
-func partTwo(filename string) {
+func partTwo(filename string) int {
 	getInput(filename)
 	calculateDiscountCost()
-	fmt.Println("discount_cost:", total_cost)
-}
-
-func main() {
-	// partOne("input2")
-	partTwo("input3")
+	return total_cost
 }

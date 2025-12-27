@@ -54,7 +54,7 @@ func parseConnection(conn string) {
 	}
 }
 
-func partOne(filename string) {
+func partOne(filename string) int {
 	getInput(filename)
 	connected_computers := 0
 	for _, node := range nodes {
@@ -62,7 +62,7 @@ func partOne(filename string) {
 			connected_computers += searchForConnection(node.Name, node.Neighbours)
 		}
 	}
-	fmt.Println("len:", connected_computers)
+	return connected_computers
 }
 
 func searchForConnection(computer string, neighbours []string) int {
@@ -118,7 +118,7 @@ func createPairKey(node1, node2 string) string {
 	return node2 + "-" + node1
 }
 
-func partTwo(filename string) {
+func partTwo(filename string) string {
 	getInput(filename)
 
 	largest_connection := []string{}
@@ -130,7 +130,7 @@ func partTwo(filename string) {
 		}
 	}
 	sort.Strings(largest_connection)
-	fmt.Println("password:", strings.Join(largest_connection, ","))
+	return strings.Join(largest_connection, ",")
 }
 
 func findLargestClique(start string) []string {
@@ -166,9 +166,4 @@ func isNeighbor(node1, node2 string) bool {
 		}
 	}
 	return false
-}
-
-func main() {
-	// partOne("input")
-	partTwo("input")
 }

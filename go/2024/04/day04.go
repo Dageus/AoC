@@ -2,14 +2,13 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"log"
 	"os"
 	"strings"
 )
 
-func getInput(fileName string) [][]rune {
-	file, err := os.Open(fileName)
+func getInput(filename string) [][]rune {
+	file, err := os.Open(filename)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -37,12 +36,12 @@ func getInput(fileName string) [][]rune {
 	return letterMap
 }
 
-func partOne(fileName string) {
+func partOne(fileName string) int {
 	letterMap := getInput(fileName)
-	countXmas(letterMap)
+	return countXmas(letterMap)
 }
 
-func countXmas(letterMap [][]rune) {
+func countXmas(letterMap [][]rune) int {
 	sum := 0
 	directions := []struct{ dx, dy int }{
 		{0, 1}, {0, -1}, // Horizontal
@@ -78,15 +77,15 @@ func countXmas(letterMap [][]rune) {
 		}
 	}
 
-	fmt.Println(sum)
+	return sum
 }
 
-func partTwo(fileName string) {
-	letterMap := getInput(fileName)
-	countX_mas(letterMap)
+func partTwo(filename string) int {
+	letterMap := getInput(filename)
+	return countX_mas(letterMap)
 }
 
-func countX_mas(letterMap [][]rune) {
+func countX_mas(letterMap [][]rune) int {
 	sum := 0
 
 	rows := len(letterMap)
@@ -118,9 +117,5 @@ func countX_mas(letterMap [][]rune) {
 		}
 	}
 
-	fmt.Println(sum)
-}
-
-func main() {
-	partTwo("input")
+	return sum
 }
