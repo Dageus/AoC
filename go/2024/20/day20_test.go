@@ -8,32 +8,16 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-const test = `###############
-#...#...#.....#
-#.#.#.#.#.###.#
-#S#...#.#.#...#
-#######.#.#.###
-#######.#.#...#
-#######.#.###.#
-###..E#...#...#
-###.#######.###
-#...###...#...#
-#.#####.#.###.#
-#.#...#.#.#...#
-#.#.#.#.#.#.###
-#...#...#...###
-###############
-`
-
 func TestPartOne(t *testing.T) {
-	const expected = 123
+	const expected = 1346
 
 	assert.Equal(t, partOne(utils.Input()), expected)
 }
 
 func TestPartTwo(t *testing.T) {
-	const expected = 123
+	const expected = 985482
 
+	assert.Equal(t, partTwo(utils.Sample()), sample_output)
 	assert.Equal(t, partTwo(utils.Input()), expected)
 }
 

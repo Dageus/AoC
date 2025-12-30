@@ -8,17 +8,19 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-const test = `xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))`
-
 func TestPartOne(t *testing.T) {
-	const expected = 123
+	const sample_output = 161
+	const expected = 183788984
 
+	assert.Equal(t, partOne(utils.Sample()), sample_output)
 	assert.Equal(t, partOne(utils.Input()), expected)
 }
 
 func TestPartTwo(t *testing.T) {
-	const expected = 123
+	const sample_output = 48
+	const expected = 62098619
 
+	assert.Equal(t, partTwo(utils.Sample()), sample_output)
 	assert.Equal(t, partTwo(utils.Input()), expected)
 }
 

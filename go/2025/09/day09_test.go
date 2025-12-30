@@ -8,25 +8,19 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-const test = `7,1
-11,1
-11,7
-9,7
-9,5
-2,5
-2,3
-7,3
-`
-
 func TestPartOne(t *testing.T) {
-	const expected = 123
+	const sample_output = 50
+	const expected = 4744899849
 
+	assert.Equal(t, partOne(utils.Sample()), sample_output)
 	assert.Equal(t, partOne(utils.Input()), expected)
 }
 
 func TestPartTwo(t *testing.T) {
-	const expected = 123
+	const sample_output = 24
+	const expected = 1540192500
 
+	assert.Equal(t, partTwo(utils.Sample()), sample_output)
 	assert.Equal(t, partTwo(utils.Input()), expected)
 }
 

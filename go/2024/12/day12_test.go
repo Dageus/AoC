@@ -8,34 +8,19 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-const test1 = `AAAAAA
-AAABBA
-AAABBA
-ABBAAA
-ABBAAA
-AAAAAA
-`
-
-const test2 = `RRRRIICCFF
-RRRRIICCCF
-VVRRRCCFFF
-VVRCCCJFFF
-VVVVCJJCFE
-VVIVCCJJEE
-VVIIICJJEE
-MIIIIIJJEE
-MIIISIJEEE
-MMMISSJEEE`
-
 func TestPartOne(t *testing.T) {
-	const expected = 123
+	const sample_output = 1930
+	const expected = 1433460
 
+	assert.Equal(t, partOne(utils.Sample()), sample_output)
 	assert.Equal(t, partOne(utils.Input()), expected)
 }
 
 func TestPartTwo(t *testing.T) {
-	const expected = 123
+	const sample_output = 1206
+	const expected = 855082
 
+	assert.Equal(t, partOne(utils.Sample()), sample_output)
 	assert.Equal(t, partTwo(utils.Input()), expected)
 }
 

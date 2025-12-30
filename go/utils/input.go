@@ -1,7 +1,6 @@
 package utils
 
 import (
-	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -38,6 +37,30 @@ func Input() string {
 			}
 			return inputPath
 		}
+	}
+	return inputPath
+}
+
+// Sample returns the sample filename based on the calling file's name.
+// e.g., if called from "day01_test.go", it looks for "inputs/day01.sample"
+func Sample() string {
+	_, filename, _, ok := runtime.Caller(1)
+	if !ok {
+		panic("Could not recover caller information")
+	}
+
+	base := filepath.Base(filename)
+
+	name := strings.TrimSuffix(base, ".go")
+	name = strings.TrimSuffix(name, "_test")
+
+	dir := filepath.Dir(filename)
+	dir = filepath.Dir(dir)
+
+	inputPath := filepath.Join(dir, "inputs", name+".sample")
+
+	if _, err := os.Stat(inputPath); os.IsNotExist(err) {
+		panic(fmt.Errorf("Sample input doesn't exist, please create and populate %v with the sample.", filename))
 	}
 	return inputPath
 }

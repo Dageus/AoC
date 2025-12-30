@@ -8,63 +8,17 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-const test = `0:
-###
-##.
-##.
-
-1:
-###
-##.
-.##
-
-2:
-.##
-###
-##.
-
-3:
-##.
-###
-##.
-
-4:
-###
-#..
-###
-
-5:
-###
-.#.
-###
-
-4x4: 0 0 0 0 2 0
-12x5: 1 0 1 0 2 2
-12x5: 1 0 1 0 3 2
-`
-
 func TestPartOne(t *testing.T) {
-	const expected = 123
+	const sample_output = 2
+	const expected = 550
 
+	assert.Equal(t, partOne(utils.Sample()), sample_output)
 	assert.Equal(t, partOne(utils.Input()), expected)
-}
-
-func TestPartTwo(t *testing.T) {
-	const expected = 123
-
-	assert.Equal(t, partTwo(utils.Input()), expected)
 }
 
 func BenchmarkPartOne(b *testing.B) {
 	var inputDay = utils.Input()
 	for range b.N {
 		partOne(inputDay)
-	}
-}
-
-func BenchmarkPartTwo(b *testing.B) {
-	var inputDay = utils.Input()
-	for range b.N {
-		partTwo(inputDay)
 	}
 }
