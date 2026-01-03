@@ -18,9 +18,8 @@ type Rotation struct {
 	distance  int
 }
 
-var movements []Rotation
-
-func getInput(filename string) {
+func getInput(filename string) []Rotation {
+	var movements []Rotation
 	file, err := os.Open(filename)
 	if err != nil {
 		panic(err)
@@ -34,10 +33,12 @@ func getInput(filename string) {
 		distance, _ := strconv.Atoi(scanner.Text()[1:])
 		movements = append(movements, Rotation{direction, distance})
 	}
+
+	return movements
 }
 
 func partOne(filename string) int {
-	getInput(filename)
+	movements := getInput(filename)
 
 	dial := START_DIAL
 
@@ -88,7 +89,7 @@ func processRotation(curr_dial int, rotation Rotation) (int, int) {
 }
 
 func partTwo(filename string) int {
-	getInput(filename)
+	movements := getInput(filename)
 
 	dial := START_DIAL
 

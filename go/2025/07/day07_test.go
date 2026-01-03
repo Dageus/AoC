@@ -12,28 +12,28 @@ func TestPartOne(t *testing.T) {
 	const sample_output = 21
 	const expected = 1555
 
-	assert.Equal(t, partOne(utils.Sample()), sample_output)
-	assert.Equal(t, partOne(utils.Input()), expected)
+	assert.Equal(t, sample_output, partOne(utils.Sample()))
+	assert.Equal(t, expected, partOne(utils.Input()))
 }
 
 func TestPartTwo(t *testing.T) {
 	const sample_output = 40
 	const expected = 12895232295789
 
-	assert.Equal(t, partTwo(utils.Sample()), sample_output)
-	assert.Equal(t, partTwo(utils.Input()), expected)
+	assert.Equal(t, sample_output, partTwo(utils.Sample()))
+	assert.Equal(t, expected, partTwo(utils.Input()))
 }
 
 func BenchmarkPartOne(b *testing.B) {
 	var inputDay = utils.Input()
-	for range b.N {
+	for b.Loop() {
 		partOne(inputDay)
 	}
 }
 
 func BenchmarkPartTwo(b *testing.B) {
 	var inputDay = utils.Input()
-	for range b.N {
+	for b.Loop() {
 		partTwo(inputDay)
 	}
 }

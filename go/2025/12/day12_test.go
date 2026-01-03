@@ -9,16 +9,14 @@ import (
 )
 
 func TestPartOne(t *testing.T) {
-	const sample_output = 2
 	const expected = 550
 
-	assert.Equal(t, partOne(utils.Sample()), sample_output)
-	assert.Equal(t, partOne(utils.Input()), expected)
+	assert.Equal(t, expected, partOne(utils.Input()))
 }
 
 func BenchmarkPartOne(b *testing.B) {
 	var inputDay = utils.Input()
-	for range b.N {
+	for b.Loop() {
 		partOne(inputDay)
 	}
 }

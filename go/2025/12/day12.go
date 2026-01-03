@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"os"
 	"strconv"
 	"strings"
@@ -36,7 +35,6 @@ func getInput(filename string) ([]Present, []Region) {
 			shape := [][]bool{}
 			for scanner.Scan() {
 				text := scanner.Text()
-				fmt.Println(text)
 				if text == "" {
 					break
 				}
@@ -112,9 +110,4 @@ func partTwo(filename string) int {
 	}
 
 	return sum
-}
-
-func main() {
-	res := partOne("input")
-	println(res)
 }

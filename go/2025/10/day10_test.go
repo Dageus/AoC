@@ -9,31 +9,31 @@ import (
 )
 
 func TestPartOne(t *testing.T) {
-	const sample_output = 7
-	const expected = 505
+	const sample_output = int64(7)
+	const expected = int64(505)
 
-	assert.Equal(t, partOne(utils.Sample()), sample_output)
-	assert.Equal(t, partOne(utils.Input()), expected)
+	assert.Equal(t, sample_output, partOne(utils.Sample()))
+	assert.Equal(t, expected, partOne(utils.Input()))
 }
 
 func TestPartTwo(t *testing.T) {
-	const sample_output = 33
-	const expected = 20002
+	const sample_output = int64(33)
+	const expected = int64(20002)
 
-	assert.Equal(t, partTwo(utils.Sample()), sample_output)
-	assert.Equal(t, partTwo(utils.Input()), expected)
+	assert.Equal(t, sample_output, partTwo(utils.Sample()))
+	assert.Equal(t, expected, partTwo(utils.Input()))
 }
 
 func BenchmarkPartOne(b *testing.B) {
 	var inputDay = utils.Input()
-	for range b.N {
+	for b.Loop() {
 		partOne(inputDay)
 	}
 }
 
 func BenchmarkPartTwo(b *testing.B) {
 	var inputDay = utils.Input()
-	for range b.N {
+	for b.Loop() {
 		partTwo(inputDay)
 	}
 }

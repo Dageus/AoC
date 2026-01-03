@@ -133,8 +133,3 @@ func partTwo(filename string) int {
 
 	return timelines
 }
-
-func main() {
-	res := partTwo("input")
-	println(res)
-}

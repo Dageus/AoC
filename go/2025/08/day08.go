@@ -56,8 +56,6 @@ func (dsu *DSU) union(v, u int) bool {
 
 // --------------------
 
-const LIMIT = 1000
-
 type Position struct {
 	x, y, z int
 }
@@ -95,7 +93,7 @@ func calculateSquaredDistance(a, b Position) int {
 	return x*x + y*y + z*z
 }
 
-func partOne(filename string) int {
+func partOne(filename string, limit int) int {
 	list := getInput(filename)
 
 	var edges []Edge
@@ -110,9 +108,6 @@ func partOne(filename string) int {
 	sort.Slice(edges, func(i, j int) bool { return edges[i].squared_distance < edges[j].squared_distance })
 
 	dsu := newDSU(len(list))
-	var limit int
-
-	limit = min(len(edges), LIMIT)
 
 	for i := range limit {
 		edge := edges[i]
@@ -167,9 +162,4 @@ func partTwo(filename string) int {
 	}
 
 	return 0
-}
-
-func main() {
-	res := partTwo("input")
-	println(res)
 }

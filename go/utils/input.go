@@ -8,8 +8,6 @@ import (
 	"strings"
 )
 
-const url = "https://adventofcode.com/"
-
 // Input returns the input filename based on the calling file's name.
 // e.g., if called from "day01_test.go", it looks for "inputs/day01.input"
 // or it downloads the file
@@ -27,7 +25,12 @@ func Input() string {
 	dir := filepath.Dir(filename)
 	dir = filepath.Dir(dir)
 
-	inputPath := filepath.Join(dir, "inputs", name+".input")
+	year := filepath.Base(dir)
+
+	dir = filepath.Dir(dir)
+	dir = filepath.Dir(dir)
+
+	inputPath := filepath.Join(dir, "inputs", year, name+".input")
 
 	if _, err := os.Stat(inputPath); os.IsNotExist(err) {
 		fmt.Println("Test input doesn't exist, downloading from ")
@@ -57,10 +60,15 @@ func Sample() string {
 	dir := filepath.Dir(filename)
 	dir = filepath.Dir(dir)
 
-	inputPath := filepath.Join(dir, "inputs", name+".sample")
+	year := filepath.Base(dir)
 
-	if _, err := os.Stat(inputPath); os.IsNotExist(err) {
-		panic(fmt.Errorf("Sample input doesn't exist, please create and populate %v with the sample.", filename))
+	dir = filepath.Dir(dir)
+	dir = filepath.Dir(dir)
+
+	samplePath := filepath.Join(dir, "inputs", year, name+".sample")
+
+	if _, err := os.Stat(samplePath); os.IsNotExist(err) {
+		panic(fmt.Errorf("Sample input doesn't exist, please create and populate %v with the sample.", samplePath))
 	}
-	return inputPath
+	return samplePath
 }

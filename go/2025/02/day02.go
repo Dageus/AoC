@@ -12,9 +12,8 @@ type Range struct {
 	LastIdx int
 }
 
-var ranges []Range
-
-func getInput(filename string) {
+func getInput(filename string) []Range {
+	var ranges []Range
 	file, err := os.Open(filename)
 	if err != nil {
 		panic(err)
@@ -35,10 +34,12 @@ func getInput(filename string) {
 
 		ranges = append(ranges, Range{FistIdx: first, LastIdx: last})
 	}
+
+	return ranges
 }
 
 func partOne(filename string) int {
-	getInput(filename)
+	ranges := getInput(filename)
 
 	sum := 0
 
@@ -85,7 +86,7 @@ func isInvalid(stringNum string, length int) bool {
 }
 
 func partTwo(filename string) int {
-	getInput(filename)
+	ranges := getInput(filename)
 
 	sum := 0
 

@@ -260,8 +260,3 @@ func partTwo(filename string) int64 {
 
 	return buttonPresses
 }
-
-func main() {
-	res := partTwo("input")
-	println(res)
-}

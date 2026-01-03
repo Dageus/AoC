@@ -8,13 +8,12 @@ import (
 	"strings"
 )
 
-var freshItems []Range
-
 type Range struct {
 	left, right int
 }
 
 func partOne(filename string) int {
+	var freshItems []Range
 	file, err := os.Open(filename)
 	if err != nil {
 		panic(err)
@@ -58,6 +57,7 @@ func partOne(filename string) int {
 }
 
 func partTwo(filename string) int {
+	var freshItems []Range
 	file, err := os.Open(filename)
 	if err != nil {
 		panic(err)
@@ -110,9 +110,4 @@ func partTwo(filename string) int {
 	}
 
 	return total
-}
-
-func main() {
-	res := partTwo("input")
-	println(res)
 }

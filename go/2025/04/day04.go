@@ -10,15 +10,12 @@ const (
 	EMPTY = '.'
 )
 
-var (
-	paperMap map[Position]bool
-)
-
 type Position struct {
 	X, Y int
 }
 
-func getInput(filename string) {
+func getInput(filename string) map[Position]bool {
+	var paperMap map[Position]bool
 	file, err := os.Open(filename)
 	if err != nil {
 		panic(err)
@@ -41,9 +38,10 @@ func getInput(filename string) {
 		}
 		j++
 	}
+	return paperMap
 }
 
-func validPaper(pos Position) bool {
+func validPaper(pos Position, paperMap map[Position]bool) bool {
 	neighs := []Position{
 		{-1, -1}, {-1, 0}, {-1, 1},
 		{0, -1}, {0, 1},
@@ -66,12 +64,12 @@ func validPaper(pos Position) bool {
 }
 
 func partOne(filename string) int {
-	getInput(filename)
+	paperMap := getInput(filename)
 
 	sum := 0
 
 	for pos := range paperMap {
-		if validPaper(pos) {
+		if validPaper(pos, paperMap) {
 			sum++
 		}
 	}
@@ -79,7 +77,7 @@ func partOne(filename string) int {
 }
 
 func partTwo(filename string) int {
-	getInput(filename)
+	paperMap := getInput(filename)
 
 	sum := 0
 
@@ -87,7 +85,7 @@ func partTwo(filename string) int {
 		var toRemove []Position
 
 		for pos := range paperMap {
-			if validPaper(pos) {
+			if validPaper(pos, paperMap) {
 				toRemove = append(toRemove, pos)
 			}
 		}
@@ -102,9 +100,4 @@ func partTwo(filename string) int {
 		}
 	}
 	return sum
-}
-
-func main() {
-	res := partTwo("input")
-	println(res)
 }

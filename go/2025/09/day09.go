@@ -185,12 +185,12 @@ func partOne(filename string) int {
 	list := getInput(filename)
 	maxArea := 0
 
-	n := min(len(list.x), len(list.y))
+	n := max(len(list.x), len(list.y))
 
 	for i := range n {
 		for j := i + 1; j < n; j++ {
-			x := abs(list.x[i] - list.x[j])
-			y := abs(list.y[i] - list.y[j])
+			x := abs(list.x[i]-list.x[j]) + 1
+			y := abs(list.y[i]-list.y[j]) + 1
 			a := x * y
 			if a > maxArea {
 				maxArea = a
@@ -260,9 +260,4 @@ func partTwo(filename string) int {
 	}
 
 	return 0
-}
-
-func main() {
-	res := partTwo("input")
-	println(res)
 }

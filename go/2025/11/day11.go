@@ -75,8 +75,3 @@ func partTwo(filename string) int {
 
 	return paths1 + paths2
 }
-
-func main() {
-	res := partTwo("input")
-	println(res)
-}

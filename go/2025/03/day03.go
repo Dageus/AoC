@@ -6,7 +6,9 @@ import (
 	"os"
 )
 
-func getInput(filename string) {
+func getInput(filename string) [][]int {
+	var banks [][]int
+
 	file, err := os.Open(filename)
 	if err != nil {
 		panic(err)
@@ -22,9 +24,8 @@ func getInput(filename string) {
 		}
 		banks = append(banks, bank)
 	}
+	return banks
 }
-
-var banks [][]int
 
 func maxJoltage(line []int) int {
 	// maximize 10's digit
@@ -69,33 +70,26 @@ func maxJoltage12Banks(line []int) int {
 }
 
 func partOne(filename string) int {
-	getInput(filename)
+	banks := getInput(filename)
 
 	sum := 0
 
 	for _, line := range banks {
 		n := maxJoltage(line)
-		println(n)
 		sum += n
 	}
 	return sum
 }
 
 func partTwo(filename string) int {
-	getInput(filename)
+	banks := getInput(filename)
 
 	sum := 0
 
 	for _, line := range banks {
 		n := maxJoltage12Banks(line)
-		println(n)
 		sum += n
 	}
 
 	return sum
-}
-
-func main() {
-	res := partTwo("input")
-	println(res)
 }
